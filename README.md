@@ -27,4 +27,4 @@ git_override(
 )
 ```
 
-For more in depth details see the [docs](docs/rules_uniffi.md) and the [examples](examples/README.md)
+For more in depth details see the [docs](docs/rules_uniffi.md) and the [examples](examples/)
