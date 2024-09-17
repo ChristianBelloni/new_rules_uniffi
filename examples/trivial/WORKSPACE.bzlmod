@@ -1,12 +1,3 @@
-# local_repository(
-#     name = "rules_uniffi",
-#     path = "../..",
-# )
-#
-# load("@rules_uniffi//uniffi:repositories.bzl", "rules_uniffi_dependencies")
-#
-# rules_uniffi_dependencies()
-
 load("@rules_android//android:rules.bzl", "android_sdk_repository")
 
 android_sdk_repository(

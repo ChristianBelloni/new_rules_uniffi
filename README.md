@@ -2,6 +2,9 @@
 
 Starlark implementation for Mozilla's [uniffi]("https://github.com/mozilla/uniffi-rs") project
 
+# Warning
+This repo is in early stages of development and breaking changes will be frequent. DO NOT USE in production
+
 ## Overview
 
 rules_uniffi enables you to write a single rust library and export ready-to-use bindings in kotlin and swift.
