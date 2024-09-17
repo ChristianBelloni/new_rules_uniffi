@@ -1,6 +1,5 @@
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 load("//uniffi/3rdparty/crates:defs.bzl", "all_crate_deps")
-load(":defs.bzl", "rust_uniffi_library_tool")
 
 exports_files(srcs = [
     "Cargo.lock",

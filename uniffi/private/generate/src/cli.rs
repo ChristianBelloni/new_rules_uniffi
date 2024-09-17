@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-use anyhow::{bail, Context, Result};
+use anyhow::{bail, Result};
 use camino::Utf8PathBuf;
 use clap::{Parser, Subcommand};
 use std::fmt;
@@ -165,7 +165,7 @@ fn gen_library_mode(
         }
 
         // Type-bounds on trait implementations makes selecting between languages a bit tedious.
-        let res = match language {
+        match language {
             TargetLanguage::Kotlin => generate_bindings(
                 library_path,
                 crate_name.clone(),
@@ -278,6 +278,7 @@ pub fn run_main() -> anyhow::Result<()> {
             library_mode,
             metadata_no_deps,
         } => {
+            println!("{config:?}");
             if library_mode {
                 if lib_file.is_some() {
                     panic!("--lib-file is not compatible with --library.")

@@ -1,7 +1,15 @@
-load("//uniffi/private:defs.bzl", _rust_kotlin_android_library = "rust_kotlin_android_library", _rust_kotlin_library = "rust_kotlin_library", _rust_uniffi_library = "rust_uniffi_library")
+load(
+    "//uniffi/private:defs.bzl",
+    _uniffi_android_library = "uniffi_android_library",
+    _uniffi_kotlin_library = "uniffi_kotlin_library",
+    _uniffi_library = "uniffi_library",
+    _uniffi_swift_library = "uniffi_swift_library",
+)
 
-rust_uniffi_library = _rust_uniffi_library
+uniffi_library = _uniffi_library
 
-rust_kotlin_library = _rust_kotlin_library
+uniffi_kotlin_library = _uniffi_kotlin_library
 
-rust_kotlin_android_library = _rust_kotlin_android_library
+uniffi_android_library = _uniffi_android_library
+
+uniffi_swift_library = _uniffi_swift_library

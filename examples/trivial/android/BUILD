@@ -1,9 +1,9 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_android//android:binary.bzl", "android_binary")
 load("@rules_kotlin//kotlin:android.bzl", "kt_android_library")
-load("@rules_uniffi//uniffi:defs.bzl", "rust_kotlin_android_library")
+load("@rules_uniffi//uniffi:defs.bzl", "uniffi_android_library")
 
-rust_kotlin_android_library(
+uniffi_android_library(
     name = "trivial_android_kt",
     library = "//:trivial",
 )

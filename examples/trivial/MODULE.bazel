@@ -2,6 +2,7 @@ bazel_dep(name = "rules_rust", version = "0.50.1")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "rules_kotlin", version = "1.9.6")
 bazel_dep(name = "platforms", version = "0.0.10")
+bazel_dep(name = "rules_swift", version = "2.1.1", repo_name = "build_bazel_rules_swift")
 
 crate = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
 crate.from_cargo(
@@ -35,7 +36,7 @@ use_repo(rust, "rust_toolchains")
 
 register_toolchains("@rust_toolchains//:all")
 
-bazel_dep(name = "rules_android", version = "0.1.1")
+bazel_dep(name = "rules_android", version = "0.5.1")
 bazel_dep(name = "rules_android_ndk", version = "0.1.2")
 
 # apple support
@@ -46,7 +47,7 @@ local_path_override(
     path = "../..",
 )
 
-bazel_dep(name = "rules_jvm_external", version = "6.0")
+bazel_dep(name = "rules_jvm_external", version = "6.3")
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
