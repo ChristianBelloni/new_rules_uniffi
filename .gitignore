@@ -1,3 +1,5 @@
 **/target/
 
 **/bazel-*
+
+**/.DS_Store

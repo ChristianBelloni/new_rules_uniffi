@@ -1,1 +1,12 @@
+bazel_dep(name = "rules_rust", version = "0.50.1")
 
+crate = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
+crate.from_cargo(
+    name = "crates",
+    cargo_lockfile = "//:Cargo.lock",
+    manifests = ["//:Cargo.toml"],
+)
+use_repo(crate, "crates")
+
+# apple support
+bazel_dep(name = "apple_support", version = "1.17.0", repo_name = "build_bazel_apple_support")
