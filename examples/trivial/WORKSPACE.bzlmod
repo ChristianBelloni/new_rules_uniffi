@@ -1,4 +1,20 @@
-local_repository(
-    name = "rules_uniffi",
-    path = "../..",
+# local_repository(
+#     name = "rules_uniffi",
+#     path = "../..",
+# )
+#
+# load("@rules_uniffi//uniffi:repositories.bzl", "rules_uniffi_dependencies")
+#
+# rules_uniffi_dependencies()
+
+load("@rules_android//android:rules.bzl", "android_sdk_repository")
+
+android_sdk_repository(
+    name = "androidsdk",
 )
+
+load("@rules_android_ndk//:rules.bzl", "android_ndk_repository")
+
+android_ndk_repository(name = "androidndk")
+
+register_toolchains("@androidndk//:all")

@@ -1,4 +1,7 @@
 bazel_dep(name = "rules_rust", version = "0.50.1")
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "rules_kotlin", version = "1.9.6")
+bazel_dep(name = "platforms", version = "0.0.10")
 
 crate = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
 crate.from_cargo(
@@ -8,5 +11,54 @@ crate.from_cargo(
 )
 use_repo(crate, "crates")
 
+rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+rust.toolchain(
+    edition = "2021",
+    extra_target_triples = [
+        "x86_64-apple-darwin",
+        "aarch64-apple-ios",
+        "x86_64-apple-ios",
+        "aarch64-apple-ios-sim",
+        "aarch64-linux-android",
+        "arm-linux-androideabi",
+        "armv7-linux-androideabi",
+        "x86_64-linux-android",
+        "i686-linux-android",
+        # "arm64e-apple-ios",
+    ],
+    versions = [
+        "nightly/2024-08-12",
+        "1.81.0",
+    ],
+)
+use_repo(rust, "rust_toolchains")
+
+register_toolchains("@rust_toolchains//:all")
+
+bazel_dep(name = "rules_android", version = "0.1.1")
+bazel_dep(name = "rules_android_ndk", version = "0.1.2")
+
 # apple support
 bazel_dep(name = "apple_support", version = "1.17.0", repo_name = "build_bazel_apple_support")
+bazel_dep(name = "rules_uniffi")
+local_path_override(
+    module_name = "rules_uniffi",
+    path = "../..",
+)
+
+bazel_dep(name = "rules_jvm_external", version = "6.0")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        "androidx.appcompat:appcompat:1.0.0",
+    ],
+    repositories = [
+        "https://maven.google.com",
+        "https://repo1.maven.org/maven2",
+    ],
+)
+use_repo(
+    maven,
+    "maven",
+)

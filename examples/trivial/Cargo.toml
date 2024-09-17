@@ -3,5 +3,8 @@ name = "trivial"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+crate-type = ["cdylib"]
+
 [dependencies]
 uniffi = { version = "0.28.1" }
