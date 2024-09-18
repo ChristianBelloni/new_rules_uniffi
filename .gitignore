@@ -6,3 +6,5 @@
 
 uniffi/3rdparty/crates/BUILD.*
 **/*.lock
+
+!uniffi/3rdparty/crates/BUILD.bazel
