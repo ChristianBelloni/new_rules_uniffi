@@ -5,13 +5,13 @@ load("@rules_uniffi//uniffi:defs.bzl", "uniffi_android_library")
 
 uniffi_android_library(
     name = "trivial_android_kt",
+    package_name = "com.mypackage.example",
     library = "//:trivial",
 )
 
 kt_android_library(
     name = "android_lib",
     srcs = ["MainActivity.kt"],
-    data = ["trivial"],
     deps = [
         "trivial_android_kt",
         "@maven//:androidx_appcompat_appcompat",
@@ -32,4 +32,5 @@ build_test(
     targets = [
         "trivial_android_bin.apk",
     ],
+    visibility = ["//visibility:public"],
 )

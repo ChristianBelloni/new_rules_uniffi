@@ -4,6 +4,7 @@ load("@rules_uniffi//uniffi:defs.bzl", "uniffi_kotlin_library")
 
 uniffi_kotlin_library(
     name = "trivial_kt",
+    package_name = "trivial.example",
     library = "//:trivial",
 )
 

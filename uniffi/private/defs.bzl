@@ -2,7 +2,7 @@
 
 load("@build_bazel_rules_swift//swift:swift.bzl", _swift_library = "swift_library")
 load("@build_bazel_rules_swift//swift:swift_interop_hint.bzl", _swift_interop_hint = "swift_interop_hint")
-load("@rules_android//rules:rules.bzl", _android_library = "android_library")
+load("@rules_android//android:rules.bzl", _android_library = "android_library")
 load("@rules_kotlin//kotlin:jvm.bzl", _kt_jvm_library = "kt_jvm_library")
 load(
     "@rules_rust//rust/private:utils.bzl",
@@ -91,10 +91,14 @@ def _compute_swift(ctx, staticlib, tool, out, out_header, out_modulemap):
         mnemonic = "UniffiGenerate",
     )
 
-def uniffi_kotlin_library(name, library):
+def uniffi_kotlin_library(name, library, package_name = None):
+    if (package_name == None):
+        package_name = name
+
     extract_kt_sources(
         name = "_" + name + "_srcs",
         lib = library,
+        package_name = package_name,
     )
     extract_dylib(
         name = "_dylib_" + name,
@@ -107,7 +111,7 @@ def uniffi_kotlin_library(name, library):
         data = ["_dylib_" + name],
     )
 
-def uniffi_android_library(name, library):
+def uniffi_android_library(name, library, package_name = None):
     """Creates an android kotlin library from a uniffi library
 
     Extract a kt_android_library from a uniffi_library definition
@@ -116,9 +120,14 @@ def uniffi_android_library(name, library):
         name: Unique name for the generated kt_android_library
         library: Uniffi library generated from uniffi_library
     """
+
+    if (package_name == None):
+        package_name = name
+
     extract_kt_sources(
         name = "_" + name + "_srcs",
         lib = library,
+        package_name = package_name,
     )
     extract_dylib(
         name = "_dylib_" + name,
@@ -213,15 +222,23 @@ extract_staticlib = rule(
 
 def _extract_kt_sources_impl(ctx):
     files = ctx.attr.lib[UniffiInfo]
+    out_kt = ctx.actions.declare_file(ctx.attr.name + "_src.kt")
+
+    ctx.actions.run_shell(
+        inputs = files.kotlin_srcs.to_list(),
+        command = "sed '6s/.*/package {}/' {} > {}".format(ctx.attr.package_name + ";", files.kotlin_srcs.to_list()[0].path, out_kt.path),
+        outputs = [out_kt],
+    )
 
     return DefaultInfo(
-        files = files.kotlin_srcs,
+        files = depset([out_kt]),
     )
 
 extract_kt_sources = rule(
     implementation = _extract_kt_sources_impl,
     attrs = {
         "lib": attr.label(providers = [UniffiInfo]),
+        "package_name": attr.string(mandatory = True),
     },
 )
 

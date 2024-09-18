@@ -1,6 +1,6 @@
 package examples.android.lib
 
-import uniffi.trivial.add;
+import com.mypackage.example.add;
 import androidx.appcompat.app.AlertDialog
 import android.os.Bundle
 import android.widget.Button
