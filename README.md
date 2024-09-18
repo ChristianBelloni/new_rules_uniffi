@@ -2,7 +2,7 @@
 
 Starlark implementation for Mozilla's [uniffi]("https://github.com/mozilla/uniffi-rs") project
 
-## Warning
+# Warning
 This repo is in early stages of development and breaking changes will be frequent. DO NOT USE in production
 
 ## Overview
