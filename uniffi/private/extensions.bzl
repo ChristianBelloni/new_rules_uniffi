@@ -1,7 +1,7 @@
-load("//uniffi:repositories.bzl", "rules_uniffi_dependencies")
+load("@rules_uniffi//uniffi/3rdparty/crates:defs.bzl", "crate_repositories")
 
 def _internal_deps_impl(_module_ctx):
-    rules_uniffi_dependencies()
+    crate_repositories()
 
 i = module_extension(
     doc = "",
