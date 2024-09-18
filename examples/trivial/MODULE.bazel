@@ -45,7 +45,7 @@ bazel_dep(name = "apple_support", version = "1.17.0", repo_name = "build_bazel_a
 bazel_dep(name = "rules_uniffi")
 git_override(
     module_name = "rules_uniffi",
-    commit = "eed29281feb4be82200c7699e977ee50f2a27565",
+    commit = "db6e69fe6483ee72afac2c4856ec5caaa8b9644a",
     remote = "https://github.com/ChristianBelloni/new_rules_uniffi.git",
 )
 # local_path_override(

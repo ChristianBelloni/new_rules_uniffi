@@ -22441,7 +22441,7 @@
     },
     "@@rules_uniffi~//uniffi/private:extensions.bzl%i": {
       "general": {
-        "bzlTransitiveDigest": "pdSWBUC8XI4sSfFuWa74b6myxKyvoAwkAFv1Yk8iU2g=",
+        "bzlTransitiveDigest": "PMlOMGAaaQB1oKpr8pDY3jyVN5+VwAF8XcSW91tTFqI=",
         "usagesDigest": "vBSfneQy/9NvCC7HMOOIZjw//TybHS8A/t0B8T7n7ns=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -23515,6 +23515,11 @@
             "rules_uniffi~",
             "rules_rust",
             "rules_rust~"
+          ],
+          [
+            "rules_uniffi~",
+            "rules_uniffi",
+            "rules_uniffi~"
           ],
           [
             "rules_uniffi~",
