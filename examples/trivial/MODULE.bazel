@@ -43,10 +43,15 @@ bazel_dep(name = "rules_android_ndk", version = "0.1.2")
 # apple support
 bazel_dep(name = "apple_support", version = "1.17.0", repo_name = "build_bazel_apple_support")
 bazel_dep(name = "rules_uniffi")
-local_path_override(
+git_override(
     module_name = "rules_uniffi",
-    path = "../..",
+    commit = "331067d3256a1f8133e80cb312ef769cffa6ea50",
+    remote = "https://github.com/ChristianBelloni/new_rules_uniffi.git",
 )
+# local_path_override(
+#     module_name = "rules_uniffi",
+#     path = "../..",
+# )
 
 bazel_dep(name = "rules_jvm_external", version = "6.3")
 
