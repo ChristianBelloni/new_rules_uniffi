@@ -1,7 +1,6 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
-load("@io_bazel_rules_android//rules:rules.bzl", "android_binary")
+load("@rules_android//android:binary.bzl", "android_binary")
 load("@rules_kotlin//kotlin:android.bzl", "kt_android_library")
-load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library", "kt_jvm_test")
 load("@rules_uniffi//uniffi:defs.bzl", "uniffi_android_library")
 
 uniffi_android_library(
