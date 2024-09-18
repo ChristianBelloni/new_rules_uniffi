@@ -2,7 +2,7 @@
 
 load("@build_bazel_rules_swift//swift:swift.bzl", _swift_library = "swift_library")
 load("@build_bazel_rules_swift//swift:swift_interop_hint.bzl", _swift_interop_hint = "swift_interop_hint")
-load("@rules_android//rules:rules.bzl", _android_library = "android_library")
+load("@io_bazel_rules_android//rules:rules.bzl", _android_library = "android_library")
 load("@rules_kotlin//kotlin:jvm.bzl", _kt_jvm_library = "kt_jvm_library")
 load(
     "@rules_rust//rust/private:utils.bzl",
@@ -41,16 +41,11 @@ def _uniffi_library_impl(ctx):
     uniffi_toml = ctx.actions.declare_file("uniffi.toml")
 
     ctx.actions.write(
-        content = """
-        [bindings.kotlin]
-        package_name = "{PACKAGE_NAME}"
-        """.replace("{PACKAGE_NAME}", ctx.attr.package_name),
+        content = "",
         output = uniffi_toml,
     )
 
-    dirs = "/".join(ctx.attr.package_name.split("."))
-
-    out_kotlin = ctx.actions.declare_file(name + "/dir_kt/{}/{}.kt".format(dirs, crate_name))
+    out_kotlin = ctx.actions.declare_file(name + "/dir_kt/uniffi/{}/{}.kt".format(crate_name, crate_name))
     out_swift = ctx.actions.declare_file(name + "/dir_swift/{}.swift".format(crate_name))
     out_swift_header = ctx.actions.declare_file(name + "/dir_swift/{}FFI.h".format(crate_name))
     out_swift_modulemap = ctx.actions.declare_file(name + "/dir_swift/{}FFI.modulemap".format(crate_name))
@@ -95,6 +90,7 @@ def uniffi_kotlin_library(name, library):
     extract_kt_sources(
         name = "_" + name + "_srcs",
         lib = library,
+        package_name = "my_package",
     )
     extract_dylib(
         name = "_dylib_" + name,
@@ -119,6 +115,7 @@ def uniffi_android_library(name, library):
     extract_kt_sources(
         name = "_" + name + "_srcs",
         lib = library,
+        package_name = "my_package",
     )
     extract_dylib(
         name = "_dylib_" + name,
@@ -148,6 +145,7 @@ def uniffi_swift_library(name, library, module_name = None):
         library: Uniffi library generated from uniffi_library
         module_name: Generated swift module name, (defaults to name)
     """
+
     extract_swift_sources(
         name = "_" + name + "_srcs",
         lib = library,
@@ -176,6 +174,7 @@ def uniffi_swift_library(name, library, module_name = None):
         static_library = "_staticlib_" + name,
         aspect_hints = ["_interop_hint_" + name],
     )
+
     _swift_library(
         name = name,
         srcs = ["_" + name + "_srcs"],
@@ -214,14 +213,23 @@ extract_staticlib = rule(
 def _extract_kt_sources_impl(ctx):
     files = ctx.attr.lib[UniffiInfo]
 
+    out = ctx.actions.declare_file(ctx.attr.name + "_out.kt")
+
+    ctx.actions.run_shell(
+        inputs = files.kotlin_srcs.to_list(),
+        command = "sed '6s/.*/package {}/' {} > {}".format(ctx.attr.package_name + ";", files.kotlin_srcs.to_list()[0].path, out.path),
+        outputs = [out],
+    )
+
     return DefaultInfo(
-        files = files.kotlin_srcs,
+        files = depset([out]),
     )
 
 extract_kt_sources = rule(
     implementation = _extract_kt_sources_impl,
     attrs = {
         "lib": attr.label(providers = [UniffiInfo]),
+        "package_name": attr.string(mandatory = True),
     },
 )
 
@@ -264,10 +272,9 @@ extract_swift_modulemap = rule(
     },
 )
 
-uniffi_library = rule(
+_uniffi_library = rule(
     implementation = _uniffi_library_impl,
     attrs = {
-        "package_name": attr.string(default = "uniffi", doc = "Package name applied for kotlin bindings"),
         "_generate_tool": attr.label(default = Label("@rules_uniffi//uniffi/private/generate:generate_bin"), executable = True, cfg = "exec"),
     } | RUST_ATTRS,
     toolchains = [
@@ -276,3 +283,6 @@ uniffi_library = rule(
     ],
     fragments = ["cpp"],
 )
+
+def uniffi_library(**kwargs):
+    _uniffi_library(**kwargs)

@@ -4,22 +4,26 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "rules_android", version = "0.5.1")
 bazel_dep(name = "rules_android_ndk", version = "0.1.2")
 bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "rules_rust", version = "0.50.1")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
-bazel_dep(name = "rules_kotlin", version = "1.9.6")
 bazel_dep(name = "rules_cc", version = "0.0.10")
 bazel_dep(name = "rules_swift", version = "2.1.1", repo_name = "build_bazel_rules_swift")
 bazel_dep(name = "stardoc", version = "0.7.0")
+bazel_dep(name = "rules_android", version = "0.5.1", repo_name = "io_bazel_rules_android")
+bazel_dep(name = "rules_kotlin", version = "1.9.6")
+local_path_override(
+    module_name = "rules_kotlin",
+    path = "/Users/christianbelloni/work/oss/rules_kotlin_release",
+)
 
 # apple support
 bazel_dep(name = "apple_support", version = "1.17.0", repo_name = "build_bazel_apple_support")
 
 http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 
-bazel_dep(name = "rules_java", version = "7.11.1", dev_dependency = True)
+bazel_dep(name = "rules_java", version = "7.11.1")
 
 deps = use_extension("@rules_uniffi//uniffi/private:extensions.bzl", "i")
 use_repo(

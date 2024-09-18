@@ -1,4 +1,4 @@
-load("@rules_android//android:aar_import.bzl", "aar_import")
+load("@rules_android//android:rules.bzl", "aar_import")
 load("@rules_rust//crate_universe:defs.bzl", "crates_vendor")
 
 package(default_visibility = ["//visibility:public"])

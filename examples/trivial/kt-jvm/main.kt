@@ -1,6 +1,6 @@
 package trivial;
 
-import trivial.example.add;
+import my_package.add;
 
 class Main {
   companion object {

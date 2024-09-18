@@ -6,8 +6,8 @@ bzl_library(
     visibility = ["//uniffi:__subpackages__"],
     deps = [
         "@build_bazel_rules_swift//swift",
-        "@rules_android//rules:bzl",
-        "@rules_android//rules:common_bzl",
+        "@io_bazel_rules_android//rules:bzl",
+        "@io_bazel_rules_android//rules:common_bzl",
         "@rules_java//java:rules",
         "@rules_kotlin//kotlin",
         "@rules_kotlin//src/main/starlark/core/plugin",

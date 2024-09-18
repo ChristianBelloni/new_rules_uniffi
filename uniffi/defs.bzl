@@ -1,3 +1,7 @@
+"""
+Rules to define a uniffi library
+"""
+
 load(
     "//uniffi/private:defs.bzl",
     _uniffi_android_library = "uniffi_android_library",
