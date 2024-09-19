@@ -1,11 +1,27 @@
-bazel_dep(name = "rules_rust", version = "0.50.1")
-bazel_dep(name = "bazel_skylib", version = "1.7.1")
-bazel_dep(name = "rules_kotlin", version = "1.9.6")
-bazel_dep(name = "platforms", version = "0.0.10")
-bazel_dep(name = "rules_swift", version = "2.1.1", repo_name = "build_bazel_rules_swift")
-bazel_dep(name = "rules_java", version = "7.11.1")
-bazel_dep(name = "rules_android", version = "0.1.1")
+bazel_dep(name = "rules_uniffi")
+archive_override(
+    module_name = "rules_uniffi",
+    strip_prefix = "new_rules_uniffi-0.0.1",
+    urls = ["https://github.com/ChristianBelloni/new_rules_uniffi/archive/refs/tags/v0.0.1.tar.gz"],
+)
 
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "platforms", version = "0.0.10")
+
+### Android
+bazel_dep(name = "rules_kotlin", version = "1.9.6")
+bazel_dep(name = "rules_android", version = "0.1.1")
+bazel_dep(name = "rules_android_ndk", version = "0.1.2")
+
+### Apple
+bazel_dep(name = "rules_swift", version = "2.1.1", repo_name = "build_bazel_rules_swift")
+bazel_dep(name = "apple_support", version = "1.17.0", repo_name = "build_bazel_apple_support")
+bazel_dep(name = "rules_apple", version = "3.9.0", repo_name = "build_bazel_rules_apple")
+
+### Rust
+bazel_dep(name = "rules_rust", version = "0.50.1")
+
+### Rust dependencies
 crate = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
 crate.from_cargo(
     name = "crates",
@@ -14,6 +30,7 @@ crate.from_cargo(
 )
 use_repo(crate, "crates")
 
+### Rust extra targets
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
 rust.toolchain(
     edition = "2021",
@@ -27,33 +44,18 @@ rust.toolchain(
         "armv7-linux-androideabi",
         "x86_64-linux-android",
         "i686-linux-android",
-        # "arm64e-apple-ios",
     ],
     versions = [
-        "nightly/2024-08-12",
         "1.81.0",
     ],
 )
+
+### Rust toolchain
 use_repo(rust, "rust_toolchains")
 
 register_toolchains("@rust_toolchains//:all")
 
-bazel_dep(name = "rules_android_ndk", version = "0.1.2")
-
-# apple support
-bazel_dep(name = "apple_support", version = "1.17.0", repo_name = "build_bazel_apple_support")
-bazel_dep(name = "rules_uniffi")
-git_override(
-    module_name = "rules_uniffi",
-    commit = "718dba85b6d736ac5662d5537f7c491961dd5d08",
-    remote = "https://github.com/ChristianBelloni/new_rules_uniffi.git",
-)
-
-# local_path_override(
-#     module_name = "rules_uniffi",
-#     path = "../..",
-# )
-
+### JVM dependencies
 bazel_dep(name = "rules_jvm_external", version = "6.3")
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
