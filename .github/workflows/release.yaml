@@ -1,13 +1,13 @@
-name: Main
+name: Release
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "*.*.*"
+permissions:
+  contents: write
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Release
-        uses: softprops/action-gh-release@v2
+  release:
+    uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v6
+    with:
+      release_files: rules_mobile_assets-*.tar.gz
+      bazel_test_command: echo "testing not supported at the moment"
