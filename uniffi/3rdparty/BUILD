@@ -14,16 +14,16 @@ crates_vendor(
     vendor_path = "crates",
 )
 
-aar_import(
-    name = "jna_aar",
-    aar = "@net_java_dev_jna_jna_aar//file:file",
-    visibility = ["//visibility:public"],
+alias(
+    name = "coroutines",
+    actual = "@uniffi_maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core",
 )
 
-java_import(
-    name = "jna_jar",
-    jars = ["@net_java_dev_jna_jna_jar//file"],
+alias(
+    name = "jna",
+    actual = "@uniffi_maven//:net_java_dev_jna_jna",
 )
+
 
 java_import(
     name = "android_sdk",

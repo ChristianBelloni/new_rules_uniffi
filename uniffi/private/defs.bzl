@@ -2,9 +2,9 @@
 
 load("@build_bazel_rules_swift//swift:swift.bzl", _swift_library = "swift_library")
 load("@build_bazel_rules_swift//swift:swift_interop_hint.bzl", _swift_interop_hint = "swift_interop_hint")
-load("@rules_android//rules:rules.bzl", _android_library = "android_library")
 load("@rules_kotlin//kotlin:jvm.bzl", _kt_jvm_library = "kt_jvm_library")
 load(":kotlin.bzl", _kt_android_library = "kt_android_library")
+load("@rules_uniffi//uniffi/3rdparty:defs.bzl", "KOTLIN_DEPS")
 load(
     "@rules_rust//rust/private:utils.bzl",
     "compute_crate_name",
@@ -179,7 +179,7 @@ def uniffi_kotlin_library(name, library, package_name = None):
     _kt_jvm_library(
         name = name,
         srcs = ["_" + name + "_srcs"],
-        deps = [Label("@rules_uniffi//uniffi/3rdparty:jna_jar")],
+        deps = KOTLIN_DEPS,
         data = ["_dylib_" + name],
     )
 
@@ -215,8 +215,8 @@ def uniffi_android_library(name, library, package_name = None):
     _kt_android_library(
         name = name,
         srcs = ["_" + name + "_srcs"],
-        deps = [Label("@rules_uniffi//uniffi/3rdparty:jna_aar"), Label("@rules_uniffi//uniffi/3rdparty:jna_jar")],
-        exports = [Label("@rules_uniffi//uniffi/3rdparty:jna_aar"), Label("@rules_uniffi//uniffi/3rdparty:jna_jar"), "_shim_" + name],
+        deps = KOTLIN_DEPS,
+        exports = KOTLIN_DEPS + ["_shim_" + name],
     )
 
 def uniffi_swift_library(name, library, module_name = None):
