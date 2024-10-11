@@ -10,5 +10,3 @@ rules_uniffi_dependencies()
 load("@rules_uniffi//uniffi:setup.bzl", "rules_uniffi_setup")
 
 rules_uniffi_setup()
-
-register_toolchains("//:kotlin_toolchain")
