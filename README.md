@@ -17,9 +17,11 @@ it's identical to the [rules_rust](https://github.com/bazelbuild/rules_rust) imp
  - kotlin
  - swift
 
-## Getting started (TODO!)
+## Getting started
 
-## Using Bzlmod with Bazel 6
+## Installation
+
+### Using Bzlmod with Bazel 6
 
 1. Enable with `common --enable_bzlmod` in `.bazelrc`.
 2. Add to your `MODULE.bazel` file:
@@ -28,7 +30,7 @@ it's identical to the [rules_rust](https://github.com/bazelbuild/rules_rust) imp
 bazel_dep(name = "rules_uniffi", version = "0.0.2")
 ```
 
-## Using WORKSPACE
+### Using WORKSPACE
 
 Paste this snippet into your  file:
 
@@ -48,6 +50,69 @@ rules_uniffi_dependencies()
 load("@rules_uniffi//uniffi:setup.bzl", "rules_uniffi_setup")
 
 rules_uniffi_setup()
+```
+
+### Define a shared library
+
+`Cargo.toml`
+
+```toml
+[dependencies]
+uniffi = { version = "at-least-27.0" }
+```
+
+`my-shared-lib/BUILD`
+
+```starlark
+load("@rules_uniffi//uniffi:defs.bzl", "uniffi_library")
+
+uniffi_library(
+    name = "my-shared-lib",
+    srcs = glob(["src/**/*.rs"]),
+    compile_data = ["Cargo.toml"], # uniffi needs to read the Cargo.toml during bindings generation to derive a default module/package name
+    deps = [ ... ] # should include `uniffi`
+)
+```
+
+### Consume from iOS
+
+`my-ios-app/BUILD`
+
+```starlark
+load("@rules_uniffi//uniffi:defs.bzl", "uniffi_swift_library")
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+uniffi_swift_library(
+    name = "ios_lib",
+    library = "//my-shared-lib",
+    module_name = "MySharedLib"
+)
+
+swift_library(
+    name = "app_lib",
+    srcs = ["App.swift"],
+    deps = [":trivial_swift"],
+)
+
+ios_application(
+    name = "App",
+    bundle_id = "com.example.app",
+    families = ["iphone"],
+    infoplists = [":Info.plist"],
+    minimum_os_version = "16",
+    deps = [":app_lib"],
+)
+```
+
+`App.swift`
+
+```swift
+import MySharedLib
+
+func useMyFunction() {
+    MySharedLib.add(left: 6, right: 9)
+}
 ```
 
 For more in depth details see the [docs](docs/rules_uniffi.md) and the [examples](examples/)
