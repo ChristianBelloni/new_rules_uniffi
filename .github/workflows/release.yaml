@@ -9,5 +9,5 @@ jobs:
   release:
     uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v6
     with:
-      release_files: rules_mobile_assets-*.tar.gz
+      release_files: rules_uniffi-*.tar.gz
       bazel_test_command: echo "testing not supported at the moment"
