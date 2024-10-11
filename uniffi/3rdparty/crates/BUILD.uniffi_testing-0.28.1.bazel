@@ -79,10 +79,10 @@ rust_library(
     }),
     version = "0.28.1",
     deps = [
-        "@ucr__anyhow-1.0.89//:anyhow",
-        "@ucr__camino-1.1.9//:camino",
-        "@ucr__cargo_metadata-0.15.4//:cargo_metadata",
-        "@ucr__fs-err-2.11.0//:fs_err",
-        "@ucr__once_cell-1.20.0//:once_cell",
+        "@id__anyhow-1.0.89//:anyhow",
+        "@id__camino-1.1.9//:camino",
+        "@id__cargo_metadata-0.15.4//:cargo_metadata",
+        "@id__fs-err-2.11.0//:fs_err",
+        "@id__once_cell-1.20.0//:once_cell",
     ],
 )

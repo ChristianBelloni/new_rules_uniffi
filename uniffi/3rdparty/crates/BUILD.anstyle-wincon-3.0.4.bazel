@@ -79,16 +79,16 @@ rust_library(
     }),
     version = "3.0.4",
     deps = [
-        "@ucr__anstyle-1.0.8//:anstyle",
+        "@id__anstyle-1.0.8//:anstyle",
     ] + select({
         "@rules_rust//rust/platform:aarch64-pc-windows-msvc": [
-            "@ucr__windows-sys-0.52.0//:windows_sys",  # cfg(windows)
+            "@id__windows-sys-0.52.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:i686-pc-windows-msvc": [
-            "@ucr__windows-sys-0.52.0//:windows_sys",  # cfg(windows)
+            "@id__windows-sys-0.52.0//:windows_sys",  # cfg(windows)
         ],
         "@rules_rust//rust/platform:x86_64-pc-windows-msvc": [
-            "@ucr__windows-sys-0.52.0//:windows_sys",  # cfg(windows)
+            "@id__windows-sys-0.52.0//:windows_sys",  # cfg(windows)
         ],
         "//conditions:default": [],
     }),

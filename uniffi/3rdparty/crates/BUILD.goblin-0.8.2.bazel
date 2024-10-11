@@ -93,8 +93,8 @@ rust_library(
     }),
     version = "0.8.2",
     deps = [
-        "@ucr__log-0.4.22//:log",
-        "@ucr__plain-0.2.3//:plain",
-        "@ucr__scroll-0.12.0//:scroll",
+        "@id__log-0.4.22//:log",
+        "@id__plain-0.2.3//:plain",
+        "@id__scroll-0.12.0//:scroll",
     ],
 )

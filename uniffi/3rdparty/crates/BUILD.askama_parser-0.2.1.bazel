@@ -79,6 +79,6 @@ rust_library(
     }),
     version = "0.2.1",
     deps = [
-        "@ucr__nom-7.1.3//:nom",
+        "@id__nom-7.1.3//:nom",
     ],
 )

@@ -33,36 +33,36 @@ filegroup(
 # Workspace Member Dependencies
 alias(
     name = "anyhow",
-    actual = "@ucr__anyhow-1.0.89//:anyhow",
+    actual = "@id__anyhow-1.0.89//:anyhow",
     tags = ["manual"],
 )
 
 alias(
     name = "camino",
-    actual = "@ucr__camino-1.1.9//:camino",
+    actual = "@id__camino-1.1.9//:camino",
     tags = ["manual"],
 )
 
 alias(
     name = "clap",
-    actual = "@ucr__clap-4.5.17//:clap",
+    actual = "@id__clap-4.5.17//:clap",
     tags = ["manual"],
 )
 
 alias(
     name = "uniffi_bindgen",
-    actual = "@ucr__uniffi_bindgen-0.28.1//:uniffi_bindgen",
+    actual = "@id__uniffi_bindgen-0.28.1//:uniffi_bindgen",
     tags = ["manual"],
 )
 
 alias(
     name = "uniffi_core",
-    actual = "@ucr__uniffi_core-0.28.1//:uniffi_core",
+    actual = "@id__uniffi_core-0.28.1//:uniffi_core",
     tags = ["manual"],
 )
 
 alias(
     name = "uniffi_macros",
-    actual = "@ucr__uniffi_macros-0.28.1//:uniffi_macros",
+    actual = "@id__uniffi_macros-0.28.1//:uniffi_macros",
     tags = ["manual"],
 )

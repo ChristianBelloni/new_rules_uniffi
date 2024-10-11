@@ -17,7 +17,7 @@ rust_proc_macro(
         allow_empty = True,
     ),
     aliases = {
-        "@ucr__askama_parser-0.2.1//:askama_parser": "parser",
+        "@id__askama_parser-0.2.1//:askama_parser": "parser",
     },
     compile_data = glob(
         include = ["**"],
@@ -87,13 +87,13 @@ rust_proc_macro(
     }),
     version = "0.12.5",
     deps = [
-        "@ucr__askama_parser-0.2.1//:askama_parser",
-        "@ucr__basic-toml-0.1.9//:basic_toml",
-        "@ucr__mime-0.3.17//:mime",
-        "@ucr__mime_guess-2.0.5//:mime_guess",
-        "@ucr__proc-macro2-1.0.86//:proc_macro2",
-        "@ucr__quote-1.0.37//:quote",
-        "@ucr__serde-1.0.210//:serde",
-        "@ucr__syn-2.0.77//:syn",
+        "@id__askama_parser-0.2.1//:askama_parser",
+        "@id__basic-toml-0.1.9//:basic_toml",
+        "@id__mime-0.3.17//:mime",
+        "@id__mime_guess-2.0.5//:mime_guess",
+        "@id__proc-macro2-1.0.86//:proc_macro2",
+        "@id__quote-1.0.37//:quote",
+        "@id__serde-1.0.210//:serde",
+        "@id__syn-2.0.77//:syn",
     ],
 )

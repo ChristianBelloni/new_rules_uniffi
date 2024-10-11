@@ -84,7 +84,7 @@ rust_library(
     }),
     version = "1.0.89",
     deps = [
-        "@ucr__anyhow-1.0.89//:build_script_build",
+        "@id__anyhow-1.0.89//:build_script_build",
     ],
 )
 

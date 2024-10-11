@@ -82,6 +82,6 @@ rust_library(
     }),
     version = "0.16.1",
     deps = [
-        "@ucr__smawk-0.3.2//:smawk",
+        "@id__smawk-0.3.2//:smawk",
     ],
 )

@@ -83,6 +83,6 @@ rust_library(
     }),
     version = "0.2.5",
     deps = [
-        "@ucr__utf8parse-0.2.2//:utf8parse",
+        "@id__utf8parse-0.2.2//:utf8parse",
     ],
 )

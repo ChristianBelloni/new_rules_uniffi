@@ -1,5 +1,6 @@
-load("@rules_android//android:aar_import.bzl", "aar_import")
+load("@rules_android//rules/aar_import:rule.bzl", "aar_import")
 load("@rules_rust//crate_universe:defs.bzl", "crates_vendor")
+load("@rules_java//java:defs.bzl", "java_binary", "java_import", "java_library", "java_plugin")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -8,11 +9,8 @@ crates_vendor(
     cargo_lockfile = "//uniffi/private/generate:Cargo.lock",
     manifests = ["//uniffi/private/generate:Cargo.toml"],
     mode = "remote",
-    # Short for 'crate universe index'. Keep this short to reduce the risk to
-    # bump into absolute path length issues on Windows. See:
-    # https://github.com/bazelbuild/rules_rust/issues/1120
-    # tags = ["manual"],
-    repository_name = "ucr",
+    # Short for internal deps
+    repository_name = "id",
     vendor_path = "crates",
 )
 
@@ -25,4 +23,11 @@ aar_import(
 java_import(
     name = "jna_jar",
     jars = ["@net_java_dev_jna_jna_jar//file"],
+)
+
+java_import(
+    name = "android_sdk",
+    jars = ["@rules_android//tools/android:android_jar"],
+    visibility = ["//visibility:public"],
+    neverlink = 1,
 )

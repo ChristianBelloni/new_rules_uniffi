@@ -32,7 +32,7 @@ rust_library(
     crate_root = "src/lib.rs",
     edition = "2021",
     proc_macro_deps = [
-        "@ucr__thiserror-impl-1.0.63//:thiserror_impl",
+        "@id__thiserror-impl-1.0.63//:thiserror_impl",
     ],
     rustc_flags = [
         "--cap-lints=allow",
@@ -83,7 +83,7 @@ rust_library(
     }),
     version = "1.0.63",
     deps = [
-        "@ucr__thiserror-1.0.63//:build_script_build",
+        "@id__thiserror-1.0.63//:build_script_build",
     ],
 )
 

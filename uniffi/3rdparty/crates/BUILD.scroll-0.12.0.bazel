@@ -35,7 +35,7 @@ rust_library(
     crate_root = "src/lib.rs",
     edition = "2021",
     proc_macro_deps = [
-        "@ucr__scroll_derive-0.12.0//:scroll_derive",
+        "@id__scroll_derive-0.12.0//:scroll_derive",
     ],
     rustc_flags = [
         "--cap-lints=allow",

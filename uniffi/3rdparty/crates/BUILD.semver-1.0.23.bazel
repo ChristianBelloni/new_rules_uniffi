@@ -85,8 +85,8 @@ rust_library(
     }),
     version = "1.0.23",
     deps = [
-        "@ucr__semver-1.0.23//:build_script_build",
-        "@ucr__serde-1.0.210//:serde",
+        "@id__semver-1.0.23//:build_script_build",
+        "@id__serde-1.0.210//:serde",
     ],
 )
 

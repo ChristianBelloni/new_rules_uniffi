@@ -2,6 +2,7 @@ load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_test")
 load("@rules_uniffi//uniffi:defs.bzl", "uniffi_kotlin_library")
 
+
 uniffi_kotlin_library(
     name = "trivial_kt",
     package_name = "trivial.example",

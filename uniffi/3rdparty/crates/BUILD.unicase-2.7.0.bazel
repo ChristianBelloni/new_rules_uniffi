@@ -80,7 +80,7 @@ rust_library(
     }),
     version = "2.7.0",
     deps = [
-        "@ucr__unicase-2.7.0//:build_script_build",
+        "@id__unicase-2.7.0//:build_script_build",
     ],
 )
 
@@ -131,7 +131,7 @@ cargo_build_script(
     version = "2.7.0",
     visibility = ["//visibility:private"],
     deps = [
-        "@ucr__version_check-0.9.5//:version_check",
+        "@id__version_check-0.9.5//:version_check",
     ],
 )
 

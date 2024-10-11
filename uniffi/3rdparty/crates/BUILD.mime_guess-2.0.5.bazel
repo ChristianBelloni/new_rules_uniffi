@@ -84,9 +84,9 @@ rust_library(
     }),
     version = "2.0.5",
     deps = [
-        "@ucr__mime-0.3.17//:mime",
-        "@ucr__mime_guess-2.0.5//:build_script_build",
-        "@ucr__unicase-2.7.0//:unicase",
+        "@id__mime-0.3.17//:mime",
+        "@id__mime_guess-2.0.5//:build_script_build",
+        "@id__unicase-2.7.0//:unicase",
     ],
 )
 
@@ -141,7 +141,7 @@ cargo_build_script(
     version = "2.0.5",
     visibility = ["//visibility:private"],
     deps = [
-        "@ucr__unicase-2.7.0//:unicase",
+        "@id__unicase-2.7.0//:unicase",
     ],
 )
 

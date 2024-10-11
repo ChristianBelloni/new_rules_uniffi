@@ -79,10 +79,10 @@ rust_library(
     }),
     version = "0.28.1",
     deps = [
-        "@ucr__anyhow-1.0.89//:anyhow",
-        "@ucr__textwrap-0.16.1//:textwrap",
-        "@ucr__uniffi_meta-0.28.1//:uniffi_meta",
-        "@ucr__uniffi_testing-0.28.1//:uniffi_testing",
-        "@ucr__weedle2-5.0.0//:weedle",
+        "@id__anyhow-1.0.89//:anyhow",
+        "@id__textwrap-0.16.1//:textwrap",
+        "@id__uniffi_meta-0.28.1//:uniffi_meta",
+        "@id__uniffi_testing-0.28.1//:uniffi_testing",
+        "@id__weedle2-5.0.0//:weedle",
     ],
 )

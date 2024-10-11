@@ -82,7 +82,7 @@ rust_proc_macro(
     }),
     version = "0.28.1",
     deps = [
-        "@ucr__quote-1.0.37//:quote",
-        "@ucr__syn-2.0.77//:syn",
+        "@id__quote-1.0.37//:quote",
+        "@id__syn-2.0.77//:syn",
     ],
 )

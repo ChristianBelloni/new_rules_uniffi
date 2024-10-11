@@ -1,8 +1,14 @@
-load("@rules_android//android:rules.bzl", "android_sdk_repository")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-android_sdk_repository(
-    name = "androidsdk",
+ATS_TAG = "axt_08_14_2024"
+http_archive(
+    name = "android_test_support",
+    sha256 = "2b480a8f8432a1ef4aece1baaf129c3c3965a5b6dd6400e3ae9b51f2b42a7e23",
+    strip_prefix = "android-test-%s" % ATS_TAG,
+    urls = ["https://github.com/android/android-test/archive/%s.tar.gz" % ATS_TAG],
 )
+load("@android_test_support//:repo.bzl", "android_test_repositories")
+android_test_repositories()
 
 load("@rules_android_ndk//:rules.bzl", "android_ndk_repository")
 

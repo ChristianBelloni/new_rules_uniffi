@@ -34,7 +34,7 @@ rust_library(
     crate_root = "src/lib.rs",
     edition = "2021",
     proc_macro_deps = [
-        "@ucr__askama_derive-0.12.5//:askama_derive",
+        "@id__askama_derive-0.12.5//:askama_derive",
     ],
     rustc_flags = [
         "--cap-lints=allow",
@@ -85,6 +85,6 @@ rust_library(
     }),
     version = "0.12.1",
     deps = [
-        "@ucr__askama_escape-0.10.3//:askama_escape",
+        "@id__askama_escape-0.10.3//:askama_escape",
     ],
 )

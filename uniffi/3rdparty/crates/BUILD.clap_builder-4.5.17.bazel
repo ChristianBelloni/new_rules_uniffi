@@ -88,9 +88,9 @@ rust_library(
     }),
     version = "4.5.17",
     deps = [
-        "@ucr__anstream-0.6.15//:anstream",
-        "@ucr__anstyle-1.0.8//:anstyle",
-        "@ucr__clap_lex-0.7.2//:clap_lex",
-        "@ucr__strsim-0.11.1//:strsim",
+        "@id__anstream-0.6.15//:anstream",
+        "@id__anstyle-1.0.8//:anstyle",
+        "@id__clap_lex-0.7.2//:clap_lex",
+        "@id__strsim-0.11.1//:strsim",
     ],
 )

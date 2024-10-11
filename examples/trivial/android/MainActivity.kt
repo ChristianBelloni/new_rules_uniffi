@@ -1,6 +1,6 @@
-package examples.android.lib
+package com.basicapp
 
-import com.mypackage.example.add;
+import com.mypackage.example.trivial.add;
 import androidx.appcompat.app.AlertDialog
 import android.os.Bundle
 import android.widget.Button
@@ -8,9 +8,7 @@ import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
 import androidx.appcompat.app.AppCompatActivity
 
-
 class MainActivity : AppCompatActivity() {
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val parent = LinearLayout(this).apply {
@@ -20,8 +18,7 @@ class MainActivity : AppCompatActivity() {
     AlertDialog.Builder(this)
       .setMessage("Blah blah blah? ")
       .show()
+
     add(4u, 5u)
-    // Ensure Serialization plugin has run and generated code correctly.
-    
   }
 }

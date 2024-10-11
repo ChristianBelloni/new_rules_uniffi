@@ -80,7 +80,7 @@ rust_library(
     }),
     version = "2.11.0",
     deps = [
-        "@ucr__fs-err-2.11.0//:build_script_build",
+        "@id__fs-err-2.11.0//:build_script_build",
     ],
 )
 
@@ -131,7 +131,7 @@ cargo_build_script(
     version = "2.11.0",
     visibility = ["//visibility:private"],
     deps = [
-        "@ucr__autocfg-1.3.0//:autocfg",
+        "@id__autocfg-1.3.0//:autocfg",
     ],
 )
 

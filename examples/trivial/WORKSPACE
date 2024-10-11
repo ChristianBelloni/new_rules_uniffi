@@ -11,24 +11,4 @@ load("@rules_uniffi//uniffi:setup.bzl", "rules_uniffi_setup")
 
 rules_uniffi_setup()
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "rules_kotlin",
-    sha256 = "3b772976fec7bdcda1d84b9d39b176589424c047eb2175bed09aac630e50af43",
-    url = "https://github.com/bazelbuild/rules_kotlin/releases/download/v1.9.6/rules_kotlin-v1.9.6.tar.gz",
-)
-
-load("@rules_kotlin//kotlin:repositories.bzl", "kotlin_repositories")
-
-kotlin_repositories()  # if you want the default. Otherwise see custom kotlinc distribution below
-
-load("@rules_kotlin//kotlin:core.bzl", "kt_register_toolchains")
-
-kt_register_toolchains()  # to use the default toolchain, otherwise see toolchains below
-
-load("@rules_android//android:rules.bzl", "android_sdk_repository")
-
-android_sdk_repository(
-    name = "androidsdk",
-)
+register_toolchains("//:kotlin_toolchain")
