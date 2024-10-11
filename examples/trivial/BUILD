@@ -40,6 +40,7 @@ test_suite(
     name = "trivial_tests",
     tests = [
         "//android:force_build_apks_test",
+        "//android:trivial_test",
         "//kt-jvm:trivial_kt_build_test",
         "//kt-jvm:trivial_kt_test",
         "//swift:trivial_swift_test",

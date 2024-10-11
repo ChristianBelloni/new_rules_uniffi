@@ -5,6 +5,11 @@ pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
 
+#[uniffi::export]
+pub async fn add_async(left: u64, right: u64) -> u64 {
+    left + right
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
