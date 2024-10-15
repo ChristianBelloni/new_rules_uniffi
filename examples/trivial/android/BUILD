@@ -45,6 +45,7 @@ android_binary(
     deps = [
         "android_lib",
         "@maven//:androidx_appcompat_appcompat",
+        "@rules_uniffi//uniffi/3rdparty:jna",
     ],
     incremental_dexing = 0,
     multidex = "native",

@@ -1,1 +1,12 @@
+load(
+    "@bazel_tools//tools/build_defs/repo:http.bzl",
+    "http_archive",
+)
 
+load("@rules_kotlin//kotlin:repositories.bzl", "kotlin_repositories", "kotlinc_version")
+
+kotlin_repositories()
+
+load("@rules_kotlin//kotlin:core.bzl", "kt_register_toolchains")
+
+kt_register_toolchains()

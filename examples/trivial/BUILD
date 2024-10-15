@@ -1,4 +1,4 @@
-load("@crates//:defs.bzl", "all_crate_deps")
+load("@example_crates//:defs.bzl", "all_crate_deps")
 load("@rules_uniffi//uniffi:defs.bzl", "uniffi_library")
 load("@rules_kotlin//kotlin:core.bzl", "define_kt_toolchain")
 

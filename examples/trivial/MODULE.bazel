@@ -17,6 +17,11 @@ bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "rules_kotlin", version = "1.9.6")
 bazel_dep(name = "rules_java", version = "7.2.0")
 bazel_dep(name = "rules_android", version = "0.5.1")
+git_override(
+  module_name = "rules_android",
+  commit = "b0254593fc6b18cf82a1ce2276860b4b3b0f7672",
+  remote = "https://github.com/ChristianBelloni/rules_android.git",
+)
 
 bazel_dep(name = "rules_android_ndk", version = "0.1.2")
 
@@ -31,13 +36,13 @@ bazel_dep(name = "rules_rust", version = "0.50.1")
 ### Rust dependencies
 crate = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
 crate.from_cargo(
-    name = "crates",
+    name = "example_crates",
     cargo_lockfile = "//:Cargo.lock",
     manifests = [
         "//:Cargo.toml",
     ],
 )
-use_repo(crate, "crates")
+use_repo(crate, "example_crates")
 
 ### Rust extra targets
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
@@ -90,3 +95,4 @@ use_repo(
     maven,
     "maven",
 )
+

@@ -146,9 +146,11 @@ def _compute_swift(ctx, crates, staticlib, tool, out, out_header, out_modulemap)
         inputs = inputs,
         executable = tool,
         arguments = ["generate", "--library", staticlib.path, "--out-dir", out_dir, "--language", "swift"],
-        outputs = [out, out_header],
+        outputs = [out, out_header, out_modulemap],
         mnemonic = "UniffiGenerate",
     )
+
+    new_modulemap = ctx.actions.declare_file(out_modulemap.dirname + "Gen{}FFI.modulemap".format(ctx.attr.name))
 
     formats = []
     for c in crates:
@@ -159,7 +161,7 @@ def _compute_swift(ctx, crates, staticlib, tool, out, out_header, out_modulemap)
 
     ctx.actions.write(
         content = "\n".join(formats),
-        output = out_modulemap,
+        output = new_modulemap,
     )
 
 def uniffi_kotlin_library(name, library, package_name = None):

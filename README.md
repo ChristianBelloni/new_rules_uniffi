@@ -13,7 +13,7 @@ rules_uniffi enables you to write a single rust library and export ready-to-use 
 it's identical to the [rules_rust](https://github.com/bazelbuild/rules_rust) implementation of [rust_library](https://bazelbuild.github.io/rules_rust/rust.html#rust_library).
 
 ### Currently supported languages and platforms:
- - android (rules_android v0.1.1)
+ - android (rules_android v0.5.1)
  - kotlin
  - swift
 

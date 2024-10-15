@@ -1,6 +1,6 @@
 module(
     name = "rules_uniffi",
-    version = "0.0.2",
+    version = "0.0.3",
     compatibility_level = 1,
 )
 
@@ -10,7 +10,6 @@ bazel_dep(name = "rules_android", version = "0.5.1")
 bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "rules_rust", version = "0.50.1")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
-bazel_dep(name = "rules_kotlin", version = "1.9.6")
 bazel_dep(name = "rules_swift", version = "2.1.1", repo_name = "build_bazel_rules_swift")
 bazel_dep(name = "stardoc", version = "0.7.0")
 
@@ -21,12 +20,14 @@ bazel_dep(
   version = "6.4"
 )
 
+bazel_dep(name = "rules_kotlin", version = "1.9.6")
+
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     name = "uniffi_maven",
     artifacts = [
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0",
-        "net.java.dev.jna:jna:5.15.0"
+        "net.java.dev.jna:jna:5.14.0"
     ],
     repositories = [
       "https://repo1.maven.org/maven2",
@@ -38,7 +39,7 @@ maven.install(
 use_repo(maven, "uniffi_maven")
 
 
-deps = use_extension("@rules_uniffi//uniffi/private:extensions.bzl", "i")
+deps = use_extension("//uniffi/private:extensions.bzl", "i")
 use_repo(
     deps,
     # bin deps
