@@ -298,8 +298,8 @@ _NORMAL_DEPENDENCIES = {
             "anyhow": Label("@id__anyhow-1.0.89//:anyhow"),
             "camino": Label("@id__camino-1.1.9//:camino"),
             "clap": Label("@id__clap-4.5.17//:clap"),
-            "uniffi_bindgen": Label("@id__uniffi_bindgen-0.28.1//:uniffi_bindgen"),
-            "uniffi_core": Label("@id__uniffi_core-0.28.1//:uniffi_core"),
+            "uniffi_bindgen": Label("@id__uniffi_bindgen-0.29.0//:uniffi_bindgen"),
+            "uniffi_core": Label("@id__uniffi_core-0.29.0//:uniffi_core"),
         },
     },
 }
@@ -324,7 +324,7 @@ _NORMAL_DEV_ALIASES = {
 _PROC_MACRO_DEPENDENCIES = {
     "uniffi/private/generate": {
         _COMMON_CONDITION: {
-            "uniffi_macros": Label("@id__uniffi_macros-0.28.1//:uniffi_macros"),
+            "uniffi_macros": Label("@id__uniffi_macros-0.29.0//:uniffi_macros"),
         },
     },
 }
@@ -368,10 +368,10 @@ _CONDITIONS = {
     "aarch64-apple-darwin": ["@rules_rust//rust/platform:aarch64-apple-darwin"],
     "aarch64-apple-ios": ["@rules_rust//rust/platform:aarch64-apple-ios"],
     "aarch64-apple-ios-sim": ["@rules_rust//rust/platform:aarch64-apple-ios-sim"],
-    "aarch64-fuchsia": ["@rules_rust//rust/platform:aarch64-fuchsia"],
     "aarch64-linux-android": ["@rules_rust//rust/platform:aarch64-linux-android"],
     "aarch64-pc-windows-gnullvm": [],
     "aarch64-pc-windows-msvc": ["@rules_rust//rust/platform:aarch64-pc-windows-msvc"],
+    "aarch64-unknown-fuchsia": ["@rules_rust//rust/platform:aarch64-unknown-fuchsia"],
     "aarch64-unknown-linux-gnu": ["@rules_rust//rust/platform:aarch64-unknown-linux-gnu"],
     "aarch64-unknown-nixos-gnu": ["@rules_rust//rust/platform:aarch64-unknown-nixos-gnu"],
     "aarch64-unknown-nto-qnx710": ["@rules_rust//rust/platform:aarch64-unknown-nto-qnx710"],
@@ -397,14 +397,14 @@ _CONDITIONS = {
     "thumbv7em-none-eabi": ["@rules_rust//rust/platform:thumbv7em-none-eabi"],
     "thumbv8m.main-none-eabi": ["@rules_rust//rust/platform:thumbv8m.main-none-eabi"],
     "wasm32-unknown-unknown": ["@rules_rust//rust/platform:wasm32-unknown-unknown"],
-    "wasm32-wasi": ["@rules_rust//rust/platform:wasm32-wasi"],
+    "wasm32-wasip1": ["@rules_rust//rust/platform:wasm32-wasip1"],
     "x86_64-apple-darwin": ["@rules_rust//rust/platform:x86_64-apple-darwin"],
     "x86_64-apple-ios": ["@rules_rust//rust/platform:x86_64-apple-ios"],
-    "x86_64-fuchsia": ["@rules_rust//rust/platform:x86_64-fuchsia"],
     "x86_64-linux-android": ["@rules_rust//rust/platform:x86_64-linux-android"],
     "x86_64-pc-windows-gnullvm": [],
     "x86_64-pc-windows-msvc": ["@rules_rust//rust/platform:x86_64-pc-windows-msvc"],
     "x86_64-unknown-freebsd": ["@rules_rust//rust/platform:x86_64-unknown-freebsd"],
+    "x86_64-unknown-fuchsia": ["@rules_rust//rust/platform:x86_64-unknown-fuchsia"],
     "x86_64-unknown-linux-gnu": ["@rules_rust//rust/platform:x86_64-unknown-linux-gnu"],
     "x86_64-unknown-nixos-gnu": ["@rules_rust//rust/platform:x86_64-unknown-nixos-gnu"],
     "x86_64-unknown-none": ["@rules_rust//rust/platform:x86_64-unknown-none"],
@@ -480,46 +480,6 @@ def crate_repositories():
 
     maybe(
         http_archive,
-        name = "id__askama-0.12.1",
-        sha256 = "b79091df18a97caea757e28cd2d5fda49c6cd4bd01ddffd7ff01ace0c0ad2c28",
-        type = "tar.gz",
-        urls = ["https://static.crates.io/crates/askama/0.12.1/download"],
-        strip_prefix = "askama-0.12.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.askama-0.12.1.bazel"),
-    )
-
-    maybe(
-        http_archive,
-        name = "id__askama_derive-0.12.5",
-        sha256 = "19fe8d6cb13c4714962c072ea496f3392015f0989b1a2847bb4b2d9effd71d83",
-        type = "tar.gz",
-        urls = ["https://static.crates.io/crates/askama_derive/0.12.5/download"],
-        strip_prefix = "askama_derive-0.12.5",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.askama_derive-0.12.5.bazel"),
-    )
-
-    maybe(
-        http_archive,
-        name = "id__askama_escape-0.10.3",
-        sha256 = "619743e34b5ba4e9703bba34deac3427c72507c7159f5fd030aea8cac0cfe341",
-        type = "tar.gz",
-        urls = ["https://static.crates.io/crates/askama_escape/0.10.3/download"],
-        strip_prefix = "askama_escape-0.10.3",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.askama_escape-0.10.3.bazel"),
-    )
-
-    maybe(
-        http_archive,
-        name = "id__askama_parser-0.2.1",
-        sha256 = "acb1161c6b64d1c3d83108213c2a2533a342ac225aabd0bda218278c2ddb00c0",
-        type = "tar.gz",
-        urls = ["https://static.crates.io/crates/askama_parser/0.2.1/download"],
-        strip_prefix = "askama_parser-0.2.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.askama_parser-0.2.1.bazel"),
-    )
-
-    maybe(
-        http_archive,
         name = "id__autocfg-1.3.0",
         sha256 = "0c4b4d0bd25bd0b74681c0ad21497610ce1b7c91b1022cd21c80c6fbdd9476b0",
         type = "tar.gz",
@@ -536,16 +496,6 @@ def crate_repositories():
         urls = ["https://static.crates.io/crates/basic-toml/0.1.9/download"],
         strip_prefix = "basic-toml-0.1.9",
         build_file = Label("//uniffi/3rdparty/crates:BUILD.basic-toml-0.1.9.bazel"),
-    )
-
-    maybe(
-        http_archive,
-        name = "id__bincode-1.3.3",
-        sha256 = "b1f45e9417d87227c7a56d22e471c6206462cba514c7590c09aff4cf6d1ddcad",
-        type = "tar.gz",
-        urls = ["https://static.crates.io/crates/bincode/1.3.3/download"],
-        strip_prefix = "bincode-1.3.3",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.bincode-1.3.3.bazel"),
     )
 
     maybe(
@@ -810,6 +760,46 @@ def crate_repositories():
 
     maybe(
         http_archive,
+        name = "id__rinja-0.3.5",
+        sha256 = "3dc4940d00595430b3d7d5a01f6222b5e5b51395d1120bdb28d854bb8abb17a5",
+        type = "tar.gz",
+        urls = ["https://static.crates.io/crates/rinja/0.3.5/download"],
+        strip_prefix = "rinja-0.3.5",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.rinja-0.3.5.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "id__rinja_derive-0.3.5",
+        sha256 = "08d9ed0146aef6e2825f1b1515f074510549efba38d71f4554eec32eb36ba18b",
+        type = "tar.gz",
+        urls = ["https://static.crates.io/crates/rinja_derive/0.3.5/download"],
+        strip_prefix = "rinja_derive-0.3.5",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.rinja_derive-0.3.5.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "id__rinja_parser-0.3.5",
+        sha256 = "93f9a866e2e00a7a1fb27e46e9e324a6f7c0e7edc4543cae1d38f4e4a100c610",
+        type = "tar.gz",
+        urls = ["https://static.crates.io/crates/rinja_parser/0.3.5/download"],
+        strip_prefix = "rinja_parser-0.3.5",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.rinja_parser-0.3.5.bazel"),
+    )
+
+    maybe(
+        http_archive,
+        name = "id__rustc-hash-2.1.1",
+        sha256 = "357703d41365b4b27c590e3ed91eabb1b663f07c4c084095e60cbed4362dff0d",
+        type = "tar.gz",
+        urls = ["https://static.crates.io/crates/rustc-hash/2.1.1/download"],
+        strip_prefix = "rustc-hash-2.1.1",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.rustc-hash-2.1.1.bazel"),
+    )
+
+    maybe(
+        http_archive,
         name = "id__ryu-1.0.18",
         sha256 = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f",
         type = "tar.gz",
@@ -990,72 +980,62 @@ def crate_repositories():
 
     maybe(
         http_archive,
-        name = "id__uniffi_bindgen-0.28.1",
-        sha256 = "7a112599c9556d1581e4a3d72019a74c2c3e122cc27f4af12577a429c4d5e614",
+        name = "id__uniffi_bindgen-0.29.0",
+        sha256 = "2242f35214f1e0e3b47c495d340c69f649f9a9ece3a943a29e275686cc884533",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/uniffi_bindgen/0.28.1/download"],
-        strip_prefix = "uniffi_bindgen-0.28.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_bindgen-0.28.1.bazel"),
+        urls = ["https://static.crates.io/crates/uniffi_bindgen/0.29.0/download"],
+        strip_prefix = "uniffi_bindgen-0.29.0",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_bindgen-0.29.0.bazel"),
     )
 
     maybe(
         http_archive,
-        name = "id__uniffi_checksum_derive-0.28.1",
-        sha256 = "a22dbe67c1c957ac6e7611bdf605a6218aa86b0eebeb8be58b70ae85ad7d73dc",
+        name = "id__uniffi_core-0.29.0",
+        sha256 = "cad9fbdeb7ae4daf8d0f7704a3b638c37018eb16bb701e30fa17a2dd3e2d39c1",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/uniffi_checksum_derive/0.28.1/download"],
-        strip_prefix = "uniffi_checksum_derive-0.28.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_checksum_derive-0.28.1.bazel"),
+        urls = ["https://static.crates.io/crates/uniffi_core/0.29.0/download"],
+        strip_prefix = "uniffi_core-0.29.0",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_core-0.29.0.bazel"),
     )
 
     maybe(
         http_archive,
-        name = "id__uniffi_core-0.28.1",
-        sha256 = "5a0c35aaad30e3a9e6d4fe34e358d64dbc92ee09045b48591b05fc9f12e0905b",
+        name = "id__uniffi_internal_macros-0.29.0",
+        sha256 = "22a9dba1d78b9ce429439891089c223478043d52a1c3176a0fcea2b5573a7fcf",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/uniffi_core/0.28.1/download"],
-        strip_prefix = "uniffi_core-0.28.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_core-0.28.1.bazel"),
+        urls = ["https://static.crates.io/crates/uniffi_internal_macros/0.29.0/download"],
+        strip_prefix = "uniffi_internal_macros-0.29.0",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_internal_macros-0.29.0.bazel"),
     )
 
     maybe(
         http_archive,
-        name = "id__uniffi_macros-0.28.1",
-        sha256 = "db66474c5c61b0f7afc3b4995fecf9b72b340daa5ca0ef3da7778d75eb5482ea",
+        name = "id__uniffi_macros-0.29.0",
+        sha256 = "78dd5f8eefba5898b901086f5e7916da67b9a5286a01cc44e910cd75fa37c630",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/uniffi_macros/0.28.1/download"],
-        strip_prefix = "uniffi_macros-0.28.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_macros-0.28.1.bazel"),
+        urls = ["https://static.crates.io/crates/uniffi_macros/0.29.0/download"],
+        strip_prefix = "uniffi_macros-0.29.0",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_macros-0.29.0.bazel"),
     )
 
     maybe(
         http_archive,
-        name = "id__uniffi_meta-0.28.1",
-        sha256 = "d898893f102e0e39b8bcb7e3d2188f4156ba280db32db9e8af1f122d057e9526",
+        name = "id__uniffi_meta-0.29.0",
+        sha256 = "9d5965b1d4ffacef1eaa72fef9c00d2491641e87ad910f6c5859b9c503ddb16a",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/uniffi_meta/0.28.1/download"],
-        strip_prefix = "uniffi_meta-0.28.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_meta-0.28.1.bazel"),
+        urls = ["https://static.crates.io/crates/uniffi_meta/0.29.0/download"],
+        strip_prefix = "uniffi_meta-0.29.0",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_meta-0.29.0.bazel"),
     )
 
     maybe(
         http_archive,
-        name = "id__uniffi_testing-0.28.1",
-        sha256 = "2c6aa4f0cf9d12172d84fc00a35a6c1f3522b526daad05ae739f709f6941b9b6",
+        name = "id__uniffi_udl-0.29.0",
+        sha256 = "279b82bac9a382c796a0d210bb8354a0b813499b28aa1de046c85d78ca389805",
         type = "tar.gz",
-        urls = ["https://static.crates.io/crates/uniffi_testing/0.28.1/download"],
-        strip_prefix = "uniffi_testing-0.28.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_testing-0.28.1.bazel"),
-    )
-
-    maybe(
-        http_archive,
-        name = "id__uniffi_udl-0.28.1",
-        sha256 = "6b044e9c519e0bb51e516ab6f6d8f4f4dcf900ce30d5ad07c03f924e2824f28e",
-        type = "tar.gz",
-        urls = ["https://static.crates.io/crates/uniffi_udl/0.28.1/download"],
-        strip_prefix = "uniffi_udl-0.28.1",
-        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_udl-0.28.1.bazel"),
+        urls = ["https://static.crates.io/crates/uniffi_udl/0.29.0/download"],
+        strip_prefix = "uniffi_udl-0.29.0",
+        build_file = Label("//uniffi/3rdparty/crates:BUILD.uniffi_udl-0.29.0.bazel"),
     )
 
     maybe(
@@ -1192,7 +1172,7 @@ def crate_repositories():
         struct(repo = "id__anyhow-1.0.89", is_dev_dep = False),
         struct(repo = "id__camino-1.1.9", is_dev_dep = False),
         struct(repo = "id__clap-4.5.17", is_dev_dep = False),
-        struct(repo = "id__uniffi_bindgen-0.28.1", is_dev_dep = False),
-        struct(repo = "id__uniffi_core-0.28.1", is_dev_dep = False),
-        struct(repo = "id__uniffi_macros-0.28.1", is_dev_dep = False),
+        struct(repo = "id__uniffi_bindgen-0.29.0", is_dev_dep = False),
+        struct(repo = "id__uniffi_core-0.29.0", is_dev_dep = False),
+        struct(repo = "id__uniffi_macros-0.29.0", is_dev_dep = False),
     ]
