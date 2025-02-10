@@ -51,18 +51,18 @@ alias(
 
 alias(
     name = "uniffi_bindgen",
-    actual = "@id__uniffi_bindgen-0.28.1//:uniffi_bindgen",
+    actual = "@id__uniffi_bindgen-0.29.0//:uniffi_bindgen",
     tags = ["manual"],
 )
 
 alias(
     name = "uniffi_core",
-    actual = "@id__uniffi_core-0.28.1//:uniffi_core",
+    actual = "@id__uniffi_core-0.29.0//:uniffi_core",
     tags = ["manual"],
 )
 
 alias(
     name = "uniffi_macros",
-    actual = "@id__uniffi_macros-0.28.1//:uniffi_macros",
+    actual = "@id__uniffi_macros-0.29.0//:uniffi_macros",
     tags = ["manual"],
 )
