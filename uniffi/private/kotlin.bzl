@@ -57,7 +57,7 @@ def _kt_android_artifact(
     )
     return [base_name, kt_name]
 
-def kt_android_library(name, exports = [], resources = [], visibility = None, exec_properties = None, **kwargs):
+def kt_android_library(name, exports = [], visibility = None, exec_properties = None, **kwargs):
     """Creates an Android sandwich library.
 
     `srcs`, `deps`, `plugins` are routed to `kt_jvm_library` the other android
@@ -71,7 +71,6 @@ def kt_android_library(name, exports = [], resources = [], visibility = None, ex
         tags = kwargs.get("tags", default = None),
         testonly = kwargs.get("testonly", default = 0),
         exec_properties = exec_properties,
-        resources = resources,
     )
 
 def kt_android_local_test(
