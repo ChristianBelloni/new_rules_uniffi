@@ -236,7 +236,7 @@ def rust_library_common(ctx, crate_type):
     crate_root = getattr(ctx.file, "crate_root", None)
     if not crate_root:
         crate_root = crate_root_src(ctx.attr.name, ctx.attr.crate_name, ctx.files.srcs, crate_type)
-    srcs, crate_root = transform_sources(ctx, ctx.files.srcs, crate_root)
+    srcs, crate_root = transform_sources(ctx, ctx.files.srcs, ctx.compile_data, crate_root)
 
     # Determine unique hash for this rlib.
     # Note that we don't include a hash for `cdylib` and `staticlib` since they are meant to be consumed externally
