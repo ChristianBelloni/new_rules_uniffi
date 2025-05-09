@@ -1,6 +1,6 @@
 module(
     name = "rules_uniffi",
-    version = "0.0.16",
+    version = "0.0.17",
     compatibility_level = 1,
 )
 
